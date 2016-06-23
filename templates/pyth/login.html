@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>PythC Login</title>
+ <link rel="icon" href="{{ url_for('static', filename='pyth.png')}}">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="{{ url_for('static', filename='css/toastr.min.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/animate.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet">
+<script src="{{ url_for('static', filename='js/myscript.js')}}"></script>
+</head>
+
+<body style="overflow: hidden;">
+
+
+
+
+<div class="oginscreen animated fadeInDown">
+        <div>
+
+               <center> <h1 class="logo-name">PythC</h1></center>
+               <div class="middle-box l">
+            <form class="m-t" role="form" action="/res/loginUser/" method="POST">
+            <p style="color:red">{{mess}}</p>
+                <div class="form-group">
+                    <input type="text" autocomplete="off" name="userName" class="form-control" placeholder="Username" required="">
+                </div>
+                <div class="form-group">
+                    <input type="password" name="pass1" class="form-control" placeholder="Password" required="">
+                </div>
+                <input type="submit" value="Login" name="Login" class="btn btn-primary block full-width m-b">
+
+                <p class="text-muted text-center"><small>Do not have an account?</small></p>
+                <a class="btn btn-sm btn-white btn-block" href="/res/signUp/">Create an account</a>
+            </form>
+           <center> <p class="m-t"> <small>PythC uses Inspinia and Bootstrap</small> </p></center>
+        </div> </div>
+    </div>
+
+    <!-- Mainly scripts -->
+    <script src="js/jquery-2.1.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+
+
+
+
+
+
+</body>
+</html>

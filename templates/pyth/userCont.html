@@ -1,0 +1,84 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>PythC</title>
+ <link rel="icon" href="{{ url_for('static', filename='pyth.png')}}">
+    <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.css')}}" rel="stylesheet">
+
+    <!-- Toastr style -->
+    <link href="{{ url_for('static', filename='css/toastr.min.css')}}" rel="stylesheet">
+
+    <link href="{{ url_for('static', filename='css/animate.css')}}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css')}}" rel="stylesheet">
+<script src="{{ url_for('static', filename='js/myscript.js')}}"></script>
+</head>
+
+<body style="overflow: hidden;">
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
+                    <li class="nav-header">
+                        <div class="dropdown profile-element"> <center><span>
+                            <img alt="image" class="img-circle" src="{{ url_for('static', filename='pythH.png')}}" />
+                             </span>
+                            <span class="clear"> <span class="block m-t-xs" style = "color:white">Welcome to <strong class="font-bold">PythC</strong>
+                              </center>
+                        </div>
+                       
+                    </li>
+                      <li>
+                        <a href="/res/"><span class="nav-label">Python Compiler</span></a>
+                    </li>
+                    <li>
+                        <a href="/res/setMenu/"><i class="fa fa-diamond"></i> <span class="nav-label">Lessons</span></a>
+                    </li>
+                    <li class ="active">
+                        <a href="/res/userCont/"><i class="fa fa-diamond"></i> <span class="nav-label">User Created Lessons</span></a>
+                    </li><li>
+                        <a href="/res/userProfile/"><i class="fa fa-diamond"></i> <span class="nav-label">Your Profile</span></a>
+                    </li>
+                  </span></a></center></div></li></ul>
+
+            </div>
+        </nav>
+
+        <div id="page-wrapper" class="gray-bg dashbard-1" >
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+           
+        </div> <center><h1>User Created Lessons</h1></center>
+            
+
+        </nav>
+        </div>
+                <div class="row  border-bottom white-bg dashboard-header" style="height: 80vh;overflow : auto;">
+{% for name in names %}
+    <h2><a href="/load/{{name}}/">{{name}}:</a> </h2>
+        <h4>{{sumSL[names.index(name)]}}</h4>
+    <br/>
+    {% endfor %}
+
+
+            </div>
+<br/>       <a href="/res/addLesson" class="btn btn-w-m btn-primary" style="float:right">Add Lesson</a>
+<br/>
+    <!-- Mainly scripts -->
+   
+
+    <!-- Custom and plugin javascript -->
+  
+<script src="{{ url_for('static', filename='js/myscript.js')}}"></script>
+
+   
+</body>
+</html>
