@@ -1,6 +1,5 @@
 
 from firebase import firebase
-import enchant
 import random
 import urllib2
 import re
@@ -13,7 +12,7 @@ from bs4 import BeautifulSoup
 from urllib2 import urlopen
 import os
 
-firebase = firebase.FirebaseApplication('YOUR-FIREBASE-URL', None)
+firebase = firebase.FirebaseApplication('https://pythc.firebaseio.com/', None)
 
 def getMe():
 	return conv
@@ -47,66 +46,6 @@ def addToRand(phrase):
 		firebase.post('randomR',str(arr))
 		return 'green'
 	return 'red'
-def getMyResp(p):
-	keys  = eval(getResp("Keys"))
-	for item in keys:
-		if item in p:
-			arrR = eval(getResp(item))
-			resP = arrR[random.randint(0, len(arrR)-1)]
-			b = "(ME)"+resP[1:]
-			conv.append(b)
-			return;
-	if "?" in p:
-		b = "(ME)Good Question that I don't know the answer to ;)"
-		conv.append(b)
-		return;
-	print "1"
-	if getResp(p) != None:
-			arrR = eval(getResp(p))
-			resP = arrR[random.randint(0, len(arrR)-1)]
-			b = "(ME)"+resP[1:]
-			conv.append(b)
-			return;
-	print "2"
-	s = p.split(' ')
-	for item in s:
-		if getResp(item) != None:
-			if getResp(item).startswith('C'):
-				arrR = eval(getResp(item))
-				resP = arrR[random.randint(0, len(arrR)-1)]
-				b = "(ME)"+resP[1:]
-				conv.append(b)
-				return;
-	print s
-	if '?' in p:
-		b = "(ME) Good Question That I don't know the answer to"
-		conv.append(b)
-		return;
-	print "3"
-	d = enchant.Dict("en_US")
-	print "4"
-	for item in s:
-		if d.check(item) == False:
-			arrSug = d.suggest(item)
-			stringA = "("
-			count = 0
-			for sug in arrSug:
-				if count == 0:
-					stringA = stringA +sug
-				else:
-					stringA = stringA+","+sug
-				count = count+1
-			stringA = stringA +')'
-			b = "(ME)"+"I didn't understand '"+item+"' try one of the following: "+stringA
-			conv.append(b)
-			return;
-	print "5"
-	rA = getRandR()
-	b = "(ME)"+rA[random.randint(0, len(rA)-1)]
-	print b
-	conv.append(b)
-	return;
-
 
 def getResp(phrase):
 	a = firebase.get(phrase,None)

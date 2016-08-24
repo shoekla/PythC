@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>PythC</title>
+    <title>{{email}}PythC</title>
  <link rel="icon" href="{{ url_for('static', filename='pyth.png')}}">
     <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -36,16 +36,70 @@
                        
                     </li>
                       <li>
-                        <a href="/res/"><span class="nav-label">Python Compiler</span></a>
+                          <a href="#">
+                         <form id="resback" action="/backToRes/" method="POST">
+                            <!-- Your Form -->    
+        <i class="fa fa-diamond"></i> 
+        <span class="nav-label">
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('resback').submit(); return false;">
+        Python Compiler
+</span>
+        </span>
+                            </form>
+                        </a>
                     </li>
                     <li class ="active">
-                        <a href="/res/setMenu/"><i class="fa fa-diamond"></i> <span class="nav-label">Lessons</span></a>
+                            <a href="#">
+                         <form id="setLessons" action="/setLess/" method="POST">
+                            <!-- Your Form -->    
+        <i class="fa fa-diamond"></i> 
+        <span class="nav-label">
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('setLessons').submit(); return false;">
+        Lessons
+</span>
+        </span>
+                            </form>
+                        </a>
                     </li>
                     <li>
-                        <a href="/res/userCont/"><i class="fa fa-diamond"></i> <span class="nav-label">User Created Lessons</span></a>
+                             <a href="#">
+                         <form id="userLessons" action="/userLess/" method="POST">
+                            <!-- Your Form -->    
+        <i class="fa fa-diamond"></i> 
+        <span class="nav-label">
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('userLessons').submit(); return false;">
+     User Created Lessons
+</span>
+        </span>
+                            </form>
+                        </a>
                     </li><li>
-                        <a href="/res/userProfile/"><i class="fa fa-diamond"></i> <span class="nav-label">Your Profile</span></a>
+                         <a href="#">
+                         <form id="user_form" action="/userProfile/" method="POST">
+                            <!-- Your Form -->    
+        <i class="fa fa-diamond"></i> 
+        <span class="nav-label">
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('user_form').submit(); return false;">
+        Your Profile
+</span>
+        </span>
+                            </form>
+                        </a>
                     </li>
+                              <li>
+                        <a href="/">
+                            <!-- Your Form -->    
+        <i class="fa fa-diamond"></i> 
+        <span class="nav-label">
+         Logout
+        </span>
+                        </a>
+                    </li>
+
                   </span></a></center></div></li></ul>
 
             </div>
@@ -63,28 +117,132 @@
         </div>
                 <div class="row  border-bottom white-bg dashboard-header" style="height: 90vh;overflow : auto;">
 
-    <h2><a href="/load/Lesson 1 Syntax and Printing/">Lesson 1 Syntax and Printing:</a> </h2>
-        <h4>In this lesson, we will learn the basic syntax of python, and learn how to print strings on the screen!</h4>
-    <br/>
-     <h2><a href="/load/Lesson 2 Variables in Python/">Lesson 2 Variables in Python:</a> </h2>
-<h4>In this lesson, we will learn about variables in python, and how to effecitivley use them!</h4>
-     <br/>
-  <h2><a href="/load/Lesson 3 Conditionals">Lesson 3 Conditionals:</a> </h2>
-<h4>In this lesson, we will learn about conditionals, such as if, elsem and else if!</h4>
-  <br/>
-   <h2><a href="/load/Lesson 4 Control Flow">Lesson 4 Control Flow: </a></h2>
-<h4>In this lesson, we will learn about control flow, aka loops!</h4>
-   <br/>
-    <h2><a href="/load/Lesson 5 Methods">Lesson 5 Methods:</a> </h2>
-<h4>In this lesson, we will learn about methods, to better organize our code!</h4>
-    <br/>
+    <h2>
+   <!-- <a href="/load/Lesson 1 Syntax and Printing/">Lesson 1 Syntax and Printing:</a> 
+       
+    <br/>-->
+ <a href="#">
+                         <form id="LessonOne" action="/lesson/Lesson 1 Syntax and Printing/" method="POST">
+                            <!-- Your Form --> 
+    
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('LessonOne').submit(); return false;">
+        Lesson 1 Syntax and Printing:
+</span>
+    
+                            </form>
+                        </a></h2>
+ <h4>In this lesson, we will learn the basic syntax of python, and learn how to print strings on the screen!</h4>
+<br/>
 
-     <h2><a href="/load/Lesson 6 Data Structures">Lesson 6 Data Structures:</a> </h2>
+
+
+
+
+
+    <h2>
+   <!-- <a href="/load/Lesson 1 Syntax and Printing/">Lesson 1 Syntax and Printing:</a> 
+       
+    <br/>-->
+ <a href="#">
+                         <form id="Lessontwo" action="/lesson/Lesson 2 Variables in Python/" method="POST">
+                            <!-- Your Form --> 
+    
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('Lessontwo').submit(); return false;">
+        Lesson 2 Variables in Python:
+</span>
+    
+                            </form>
+                        </a></h2>
+
+<h4>In this lesson, we will learn about variables in python, and how to effectively use them!</h4>
+<br/>
+
+   <h2>
+   <!-- <a href="/load/Lesson 1 Syntax and Printing/">Lesson 1 Syntax and Printing:</a> 
+       
+    <br/>-->
+ <a href="#">
+                         <form id="Lessonthree" action="/lesson/Lesson 3 Conditionals/" method="POST">
+                            <!-- Your Form --> 
+    
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('Lessonthree').submit(); return false;">
+        Lesson 3 Conditionals:
+</span>
+    
+                            </form>
+                        </a></h2>
+
+<h4>In this lesson, we will learn about conditionals, such as if, else and else if!</h4>
+<br/>
+
+ <a href="#">
+                         <form id="Lessonfour" action="/lesson/Lesson 4 Control Flow/" method="POST">
+                            <!-- Your Form --> 
+    
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('Lessonfour').submit(); return false;">
+     <h2>  Lesson 4 Control Flow: </h2>
+</span>
+    
+                            </form>
+                        </a>
+<h4>In this lesson, we will learn about control flow, aka loops!</h4>
+<br/>
+
+
+
+ <a href="#">
+                         <form id="Lessonfive" action="/lesson/Lesson 5 Methods/" method="POST">
+                            <!-- Your Form --> 
+    
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('Lessonfive').submit(); return false;">
+     <h2>  Lesson 5 Methods: </h2>
+</span>
+    
+                            </form>
+                        </a>
+<h4>In this lesson, we will learn about methods, to better organize our code!</h4>
+<br/>
+
+
+
+
+ <a href="#">
+                         <form id="Lessonsix" action="/lesson/Lesson 6 Data Structures/" method="POST">
+                            <!-- Your Form --> 
+    
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('Lessonsix').submit(); return false;">
+     <h2>  Lesson 6 Data Structures: </h2>
+</span>
+    
+                            </form>
+                        </a>
 <h4>In this lesson, we will learn about Data Structure, for different data you want to process</h4>
-     <br/>
-    <h2><a href="/lesson/Final Project">Final Project: </a></h2>
+<br/>
+
+
+ <a href="#">
+                         <form id="Lessonf" action="/lesson/Final Project/" method="POST">
+                            <!-- Your Form --> 
+    
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('Lessonf').submit(); return false;">
+     <h2>  Final Project:  </h2>
+</span>
+    
+                            </form>
+                        </a>
+
 <h4>In this project, we will make a game to play a fair game of Rock, Paper, Scissors with you.</h4>
-    <br/>
+<br/>
+
+
+
 
             </div>
       

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{{email}}PythC</title>
+    <title>{{email}}{{email}} PythC</title>
  <link rel="icon" href="{{ url_for('static', filename='pyth.png')}}">
     <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -21,7 +21,7 @@
 <script src="{{ url_for('static', filename='js/myscript.js')}}"></script>
 </head>
 
-<body style="overflow: hidden;">
+<body  style="overflow: hidden;">
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
@@ -63,7 +63,7 @@
                             </form>
                         </a>
                     </li>
-                    <li class ="active">
+                    <li>
                              <a href="#">
                          <form id="userLessons" action="/userLess/" method="POST">
                             <!-- Your Form -->    
@@ -76,7 +76,8 @@
         </span>
                             </form>
                         </a>
-                    </li><li>
+                    </li>
+                    <li class ="active">
                          <a href="#">
                          <form id="user_form" action="/userProfile/" method="POST">
                             <!-- Your Form -->    
@@ -105,27 +106,21 @@
             </div>
         </nav>
 
-        <div id="page-wrapper" class="gray-bg dashbard-1" >
+        <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
            
-        </div> <center><h1>User Created Lessons</h1></center>
+        </div> <center><h1>Your Account</h1></center>
             
 
         </nav>
         </div>
-                <div class="row  border-bottom white-bg dashboard-header" style="height: 80vh;overflow : auto;">
-{% for name in names %}
-    <h2><a href="/load/{{name}}/">{{name}}:</a> </h2>
-        <h4>{{sumSL[names.index(name)]}}</h4>
-    <br/>
-    {% endfor %}
+                <div class="row  border-bottom white-bg dashboard-header" style="height: 90vh;overflow : auto;">
 
+                   <center><h3>Coming Soon!</h3></center>
+      
 
-            </div>
-<br/>       <a href="/res/addLesson" class="btn btn-w-m btn-primary" style="float:right">Add Lesson</a>
-<br/>
     <!-- Mainly scripts -->
    
 

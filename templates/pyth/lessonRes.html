@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>PythC</title>
+    <title>{{email}}PythC</title>
  <link rel="icon" href="{{ url_for('static', filename='pyth.png')}}">
     <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -50,16 +50,70 @@
                        
                     </li>
                       <li>
-                        <a href="/res/"><span class="nav-label">Python Compiler</span></a>
+                          <a href="#">
+                         <form id="resback" action="/backToRes/" method="POST">
+                            <!-- Your Form -->    
+        <i class="fa fa-diamond"></i> 
+        <span class="nav-label">
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('resback').submit(); return false;">
+        Python Compiler
+</span>
+        </span>
+                            </form>
+                        </a>
                     </li>
                     <li class ="active">
-                        <a href="/res/setMenu/"><i class="fa fa-diamond"></i> <span class="nav-label">Lessons</span></a>
+                            <a href="#">
+                         <form id="setLessons" action="/setLess/" method="POST">
+                            <!-- Your Form -->    
+        <i class="fa fa-diamond"></i> 
+        <span class="nav-label">
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('setLessons').submit(); return false;">
+        Lessons
+</span>
+        </span>
+                            </form>
+                        </a>
                     </li>
                     <li>
-                        <a href="/res/userCont/"><i class="fa fa-diamond"></i> <span class="nav-label">User Created Lessons</span></a>
+                             <a href="#">
+                         <form id="userLessons" action="/userLess/" method="POST">
+                            <!-- Your Form -->    
+        <i class="fa fa-diamond"></i> 
+        <span class="nav-label">
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('userLessons').submit(); return false;">
+     User Created Lessons
+</span>
+        </span>
+                            </form>
+                        </a>
                     </li><li>
-                        <a href="/res/userProfile/"><i class="fa fa-diamond"></i> <span class="nav-label">Your Profile</span></a>
+                         <a href="#">
+                         <form id="user_form" action="/userProfile/" method="POST">
+                            <!-- Your Form -->    
+        <i class="fa fa-diamond"></i> 
+        <span class="nav-label">
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('user_form').submit(); return false;">
+        Your Profile
+</span>
+        </span>
+                            </form>
+                        </a>
                     </li>
+                              <li>
+                        <a href="/">
+                            <!-- Your Form -->    
+        <i class="fa fa-diamond"></i> 
+        <span class="nav-label">
+         Logout
+        </span>
+                        </a>
+                    </li>
+
                   </span></a></center></div></li></ul>
 
             </div>
@@ -102,8 +156,8 @@
                     <form action="/res/lesson/grade/{{lessonName}}" method="POST">
                         <h2>Enter Your Code:</h2>
                         <p style="color:red">{{message}}</p>
-                        <textarea name="code"style="width: 60vh; height:72vh;" placeholder="Enter your code here" id="my-textarea">{{code}}</textarea>
-                        <br/>
+                        <textarea name="code" style="width: 60vh; height:75vh;" placeholder="Enter your code here" id="my-textarea">{{code}}</textarea>
+                     <br/>
 
 
                         <input type="submit" name="my-form" class="btn btn-w-m btn-primary" value="Execute!">

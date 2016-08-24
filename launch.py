@@ -1,68 +1,110 @@
 from flask import Flask
 from flask import request
+from flask import redirect
 from flask import render_template
 import time
 import compileA
 import os
 import firePyth
+import scrape
 app = Flask(__name__)
 
+@app.route('/')
+def goToLogin():
+	return redirect("/login/")
 @app.route("/res/")
 def compilerPlain():
-	return render_template('pyth/home.html')
+	return redirect("/login/")
+	#return render_template('pyth/home.html')
+@app.route("/userProfile/",methods=['POST'])
+def userProf(email = None):
+	email = None 
+	email = request.form['email']
+	return render_template("pyth/soon.html",email=email)
+@app.route('/login/')
+def loginUser():
+	return render_template("pyth/login.html")
+@app.route('/create/')
+def CreateUser():
+	return render_template("pyth/createAccount.html")
 
+@app.route('/forgotPass/')
+def emailUser():
+	return render_template("pyth/emailPass.html")
+@app.route('/emailPassForUser/',methods=['POST'])
+def emailPassUser(email=None,passW=None):
+	print "Sign"
+	email = None
+	passW = None
+	email = ""
+	passW = ""
+	email = request.form['email']
+	email = email.strip()
+	passW = scrape.getPass(email)
+	if passW == "":
+		return render_template("pyth/emailPass.html",mess="Email not found :(")
+	else:
+		print "Sending mail"
+		scrape.sendEmailForPass(passW,email)
+		print "Ok"
+		return render_template("pyth/login.html",mess="Email sent with Password")
 
+@app.route('/addPythCUser/',methods=['POST'])
+def createPythUSer(email = None,passW = None):
+	print "Sign"
+	email = None
+	passW = None
+	email = ""
+	passW = ""
+	email = request.form['email']
+	email = email.strip()
+	passW = request.form['passW']
+	passW = passW.strip()
+	print "Sign2"
+	if scrape.isGood(email):
+		print "is Godd"
+		return render_template("pyth/createAccount.html",mess="Email already In System :(")
+	else:
+		print "isdsjf"
+		scrape.addUser(email,passW)
+		return render_template("pyth/login.html",mess="You Were added! Please Sign in")
 
-@app.route('/res/', methods=['POST'])
-def my_formPyth_postsdfsDDD(code=None,exCode=None,startTime=None,timeA=None):
-	exCode=""
-	code=""
-	code = request.form['code']
-	exCode=compileA.com(code)
-	if len(str(exCode))==0:
-		try:     
-			exec code
-		except Exception as e: 
-			exCode = e
-	startTime=time.time()
-	timeA = time.time() - startTime
-	return render_template('pyth/res.html',exCode=exCode,timeA=timeA,code=code)
+@app.route('/loginPythCUSer/',methods=['POST'])
+def loginPythoUser(email=None,passW=None):
+	print "Sign"
+	email = None
+	passW = None
+	email = ""
+	passW = ""
+	email = request.form['email']
+	email = email.strip()
+	passW = request.form['passW']
+	passW = passW.strip()
+	print "Sign2"
+	if scrape.loginUser(email,passW):
+		return render_template('pyth/home.html',email=email)
+	else:
+		return render_template("pyth/login.html",mess="Invalid Login Credentials")
+
 
 @app.route('/res/setMenu/')
 def my_formPythRasdasESdd():
-	return render_template('pyth/setMenu.html')
+	return redirect("/login/")
+	#return render_template('pyth/setMenu.html')
 
 @app.route('/load/<lessonName>/')
 def my_formPythRLeLoadssond(lessonName):
-	return render_template('pyth/loading.html',lessonName = lessonName)
+	return redirect("/login/")
+	#return render_template('pyth/loading.html',lessonName = lessonName)
 
-@app.route('/lesson/<lessonName>/')
-def my_formRLessonPythdasESdd(lessonName, lessonDetails = [],helpV = [],lengthO = None,Precode = None):
-	lessonDetails = []
-	lessonDetails = firePyth.getRespArr(lessonName)
-	helpV = []
-	print "Almost"
-	print "Lesson Name: "+lessonName
-	if lessonName == "Final Project":
-		print "if"
-		helpV = firePyth.getVids("Rock Paper Scissors in Python")
-	else:
-		print "else"
-		helpV = firePyth.getVids(lessonName)
-	print "Yo"
-	lengthO = 0
-	Precode = """ """
-	Precode = firePyth.getPreCode(lessonName)
-	if Precode == None:
-		Precode = ""
-	lengthO = len(helpV)
-	return render_template('pyth/lesson.html',lessonName = lessonName,lessonDetails = lessonDetails,helpV=helpV,lengthO = lengthO,Precode = Precode)
 @app.route('/res/succ/<less>')
 def succLPythesson(less):
+	return redirect("/login/")
 	print "enter"
 	return render_template("pyth/succ.html",less=less)
 @app.route('/res/userCont/')
 def userCoPythnt(names = [], sumSL = []):
+	return redirect("/login/")
 	names = []
 	names = firePyth.getUserCont()
 	sumSL = []
@@ -71,6 +113,7 @@ def userCoPythnt(names = [], sumSL = []):
 	return render_template("pyth/userCont.html",names = names, sumSL=sumSL)
 @app.route('/res/addLesson')
 def addLOythess():
+	return redirect("/login/")
 	return render_template("pyth/add.html")
 @app.route('/res/addLesson/', methods=['POST'])
 def addLPythesonPost(name = None, lesson = None, project = None, summary = None, array = [], preCode = None, exCode = None,message =None,ex = None):
@@ -159,10 +202,68 @@ age = 18"""
 
 
 
+@app.route('/backToRes/',methods=['POST'])
+def resBack(email = None):
+	email = None
+	email = request.form['email']
+	return render_template('pyth/home.html',email=email)
 
+@app.route('/setLess/',methods=['POST'])
+def my_forsetMenu(email = None):
+	email = None
+	email = request.form['email']
+	return render_template('pyth/setMenu.html',email = email)
 
-
-
+@app.route('/userLess/',methods=['POST'])
+def userLessonCOntent(names = [], sumSL = [],email = None):
+	email = None
+	email = request.form['email']
+	names = []
+	names = firePyth.getUserCont()
+	sumSL = []
+	for item in names:
+		sumSL.append(firePyth.getSummary(item))
+	return render_template("pyth/userCont.html",names = names, sumSL=sumSL,email=email)
+@app.route('/res/', methods=['POST'])
+def my_formPyth_postsdfsDDD(code=None,exCode=None,startTime=None,timeA=None,email = None):
+	email = None
+	email = request.form['email']
+	exCode=""
+	code=""
+	code = request.form['code']
+	exCode=compileA.com(code)
+	if len(str(exCode))==0:
+		try:     
+			exec code
+		except Exception as e: 
+			exCode = e
+	startTime=time.time()
+	timeA = time.time() - startTime
+	return render_template('pyth/res.html',exCode=exCode,timeA=timeA,code=code,email=email)
+@app.route('/lesson/<lessonName>/',methods=['POST'])
+def my_formRLessonPythdasESdd(lessonName, lessonDetails = [],helpV = [],lengthO = None,Precode = None,email = None):
+	email = None
+	email = request.form['email']
+	lessonDetails = []
+	lessonDetails = firePyth.getRespArr(lessonName)
+	helpV = []
+	print "Almost"
+	print "Lesson Name: "+lessonName
+	if lessonName == "Final Project":
+		print "if"
+		helpV = firePyth.getVids("Rock Paper Scissors in Python")
+	else:
+		print "else"
+		helpV = firePyth.getVids(lessonName)
+	print "Yo"
+	lengthO = 0
+	Precode = """ """
+	Precode = firePyth.getPreCode(lessonName)
+	print "Precode: "+str(Precode)
+	if Precode == None:
+		Precode = ""
+	lengthO = len(helpV)
+	return render_template('pyth/lesson.html',lessonName = lessonName,lessonDetails = lessonDetails,helpV=helpV,lengthO = lengthO,Precode = Precode,email=email)
 
 if __name__ == '__main__':
     app.run()
