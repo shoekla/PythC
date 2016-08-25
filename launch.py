@@ -166,40 +166,6 @@ def addLPythesonPost(name = None, lesson = None, project = None, summary = None,
 		message = "Lesson Name Already in system :( try different name!"
 		return render_template("pyth/add.html",message=message)
 	return render_template("pyth/succAdd.html",name=name)
-@app.route('/res/lesson/grade/<lessonName>', methods=['POST'])
-def gradeCodeLesson(lessonName, lessonDetails = [],helpV = [],lengthO = None,Precode = None,code=None,exCode=None,section=None,gradeCode = None, message = None):
-	lessonDetails = []
-	lessonDetails = firePyth.getRespArr(lessonName)
-	helpV = []
-	print "Almost"
-	helpV = firePyth.getVids(lessonName)
-	print "Yo"
-	lengthO = 0
-	code = """ """
-	code = """
-nameVar = 0
-age = 18"""
-	lengthO = len(helpV)
-	exCode=""" """
-	code=""
-	code = request.form['code']
-	exCode=compileA.com(code)
-	if len(str(exCode))==0:
-		try:     
-			exec code
-		except Exception as e: 
-			exCode = e
-	section = ""
-	section = "sec"
-	exCode = exCode.strip()
-	gradeCode = firePyth.getExCode(lessonName)
-	gradeCode = gradeCode.strip()
-	if gradeCode == exCode:
-		return render_template("pyth/succ.html",less=lessonName)
-	message = ""
-	message = "Your code is not quite right"
-	return render_template('pyth/lessonRes.html',lessonName = lessonName,lessonDetails = lessonDetails,helpV=helpV,lengthO = lengthO,exCode=exCode,code=code,section=section, message = message)
-
 
 
 @app.route('/backToRes/',methods=['POST'])
@@ -264,6 +230,50 @@ def my_formRLessonPythdasESdd(lessonName, lessonDetails = [],helpV = [],lengthO 
 		Precode = ""
 	lengthO = len(helpV)
 	return render_template('pyth/lesson.html',lessonName = lessonName,lessonDetails = lessonDetails,helpV=helpV,lengthO = lengthO,Precode = Precode,email=email)
+
+@app.route('/res/lesson/grade/<lessonName>', methods=['POST'])
+def gradeCodeLesson(lessonName, lessonDetails = [],helpV = [],lengthO = None,Precode = None,code=None,exCode=None,section=None,gradeCode = None, message = None,email = None):
+	lessonDetails = []
+	lessonDetails = firePyth.getRespArr(lessonName)
+	helpV = []
+	print "Almost"
+	helpV = firePyth.getVids(lessonName)
+	print "Yo"
+	lengthO = 0
+	code = """ """
+	code = """
+nameVar = 0
+age = 18"""
+	lengthO = len(helpV)
+	exCode=""" """
+	code=""
+	code = request.form['code']
+	exCode=compileA.com(code)
+	if len(str(exCode))==0:
+		try:     
+			exec code
+		except Exception as e: 
+			exCode = e
+	section = ""
+	section = "sec"
+	exCode = exCode.strip()
+	print "22222"
+	gradeCode = firePyth.getExCode(lessonName)
+	gradeCode = gradeCode.strip()
+	print "Before If"
+	email = None
+	email = request.form['email']
+	if gradeCode == exCode:
+		print "Inside"
+		scrape.completeLess(lessonName,email)
+		print "Returning"
+		return render_template("pyth/succ.html",less=lessonName,email = email)
+	message = ""
+	message = "Your code is not quite right"
+	return render_template('pyth/lessonRes.html',lessonName = lessonName,lessonDetails = lessonDetails,helpV=helpV,lengthO = lengthO,exCode=exCode,code=code,section=section, message = message,email = email)
+
+
+
 
 if __name__ == '__main__':
     app.run()

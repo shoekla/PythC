@@ -87,4 +87,17 @@ def getPass(user):
 	return ""
 
 
+def completeLess(lessonName,email):
+	try:
+		users = eval(getResp("Users"))
+		userData = eval(getResp("UserData"))
+		for i in range(0,len(users)):
+			if users[i] == email:
+				userData[i].append(lessonName)
+				firebase.delete("UserData",None)
+				firebase.post("UserData",str(userData))
+				return
+
+	except:
+		return	
 

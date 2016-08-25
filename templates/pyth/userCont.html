@@ -117,9 +117,27 @@
         </div>
                 <div class="row  border-bottom white-bg dashboard-header" style="height: 80vh;overflow : auto;">
 {% for name in names %}
-    <h2><a href="/load/{{name}}/">{{name}}:</a> </h2>
-        <h4>{{sumSL[names.index(name)]}}</h4>
-    <br/>
+   
+
+ <a href="#">
+                         <form id="l{{name}}" action="/lesson/{{name}}/" method="POST">
+                            <!-- Your Form --> 
+    
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('l{{name}}').submit(); return false;">
+     <h2>  {{name}}:  </h2>
+</span>
+    
+                            </form>
+                        </a>
+   <h4>{{sumSL[names.index(name)]}}</h4>
+<br/>
+
+
+
+
+
+
     {% endfor %}
 
 

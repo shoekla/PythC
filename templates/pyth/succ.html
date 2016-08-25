@@ -123,8 +123,16 @@
         </nav>
         </div>
                 <div class="row  border-bottom white-bg dashboard-header">
-<center><h1>Congrats, you passed {{less}}!</h1>
-<a href="/res/setMenu/" class="btn btn-w-m btn-primary"> Back to Lessons</a></center>
+<center><h1>Congrats, you passed {{less}}! You have been awarded 10 points!</h1></center>
+
+
+
+        <form action="/setLess/" method="POST">
+                     
+
+         <input type="hidden" name="email" value="{{email}}">
+                       <center> <input type="submit" name="my-form" class="btn btn-w-m btn-primary" value="Back To Lessons"></center>
+</form>
             </div>
       
 
