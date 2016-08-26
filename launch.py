@@ -16,11 +16,7 @@ def goToLogin():
 def compilerPlain():
 	return redirect("/login/")
 	#return render_template('pyth/home.html')
-@app.route("/userProfile/",methods=['POST'])
-def userProf(email = None):
-	email = None 
-	email = request.form['email']
-	return render_template("pyth/soon.html",email=email)
+
 @app.route('/login/')
 def loginUser():
 	return render_template("pyth/login.html")
@@ -232,7 +228,7 @@ def my_formRLessonPythdasESdd(lessonName, lessonDetails = [],helpV = [],lengthO 
 	return render_template('pyth/lesson.html',lessonName = lessonName,lessonDetails = lessonDetails,helpV=helpV,lengthO = lengthO,Precode = Precode,email=email)
 
 @app.route('/res/lesson/grade/<lessonName>', methods=['POST'])
-def gradeCodeLesson(lessonName, lessonDetails = [],helpV = [],lengthO = None,Precode = None,code=None,exCode=None,section=None,gradeCode = None, message = None,email = None):
+def gradeCodeLesson(lessonName, lessonDetails = [],helpV = [],lengthO = None,Precode = None,code=None,exCode=None,section=None,gradeCode = None, message = None,email = None,award = None):
 	lessonDetails = []
 	lessonDetails = firePyth.getRespArr(lessonName)
 	helpV = []
@@ -265,13 +261,53 @@ age = 18"""
 	email = request.form['email']
 	if gradeCode == exCode:
 		print "Inside"
-		scrape.completeLess(lessonName,email)
+		award = None
+		award = scrape.completeLess(lessonName,email)
 		print "Returning"
-		return render_template("pyth/succ.html",less=lessonName,email = email)
+		return render_template("pyth/succ.html",less=lessonName,email = email,award = award)
 	message = ""
 	message = "Your code is not quite right"
 	return render_template('pyth/lessonRes.html',lessonName = lessonName,lessonDetails = lessonDetails,helpV=helpV,lengthO = lengthO,exCode=exCode,code=code,section=section, message = message,email = email)
+@app.route("/userProfile/",methods=['POST'])
+def userProf(email = None,userData = [],points = None,pointMess = None,sumSL = [],name = None,nick = None,summary = None,pic = None,lessons = []):
+	email = None 
+	email = request.form['email']
+	userData = []
+	userData = scrape.getUserData(email)
+	print userData
+	points = None
+	points = 0
+	print "2"
+	points = len(userData[0]) * 10
+	pointMess = None
+	pointMess = ""
+	pointMess = str(points)
+	sumSL = []
+	print "4"
+	for item in userData[0]:
+		sumSL.append(firePyth.getSummary(item))
+	print "5"
+	name = None
+	name = ""
+	nick = None 
+	nick = ""
+	summary = None
+	summary = ""
+	pic = None 
+	lessons = []
 
+	name = userData[1][0]
+	print name
+	nick=userData[1][1]
+	print nick
+	summary = userData[1][2]
+	print summary
+	pic = userData[1][3]
+	print pic
+	lessons=userData[0]
+	print lessons
+	print "6"
+	return render_template("pyth/userProf.html",email = email,pointMess = pointMess,name = name,nick = nick,summary = summary,pic = pic,lessons = lessons,sumSL=sumSL)
 
 
 

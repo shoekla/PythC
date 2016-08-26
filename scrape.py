@@ -58,7 +58,7 @@ def addUser(email,passW):
 	b.append(passW)
 	firebase.delete('passwords',None)
 	userData = eval(getResp("UserData"))
-	userData.append([])
+	userData.append([[],[str(email),"Nick Name",'This is my summary, I love to code!',"http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png"]])
 	firebase.delete("UserData",None)
 	firebase.post("UserData",str(userData))
 	firebase.post("passwords",str(b))
@@ -93,11 +93,26 @@ def completeLess(lessonName,email):
 		userData = eval(getResp("UserData"))
 		for i in range(0,len(users)):
 			if users[i] == email:
-				userData[i].append(lessonName)
+				if lessonName in userData[i][0]:
+					return "You already completed this lesson!"
+				userData[i][0].append(lessonName)
 				firebase.delete("UserData",None)
 				firebase.post("UserData",str(userData))
-				return
+				return "You have been awarded 10 points!"
 
 	except:
-		return	
+		return "An Error Has Occured :("	
+def getUserData(email):
+	try:
+		users = eval(getResp("Users"))
+		userData = eval(getResp("UserData"))
+		for i in range(0,len(users)):
+			if users[i] == email:
+				return userData[i]	
+
+
+	except:
+		return [[],[]]
+
+
 
