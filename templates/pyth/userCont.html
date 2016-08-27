@@ -36,7 +36,7 @@
                        
                     </li>
                       <li>
-                          <a href="#">
+                          <a href="javascript:{}" onclick="document.getElementById('resback').submit(); return false;">
                          <form id="resback" action="/backToRes/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li>
-                            <a href="#">
+                            <a href="javascript:{}" onclick="document.getElementById('setLessons').submit(); return false;">
                          <form id="setLessons" action="/setLess/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -64,7 +64,7 @@
                         </a>
                     </li>
                     <li class ="active">
-                             <a href="#">
+                             <a href="javascript:{}" onclick="document.getElementById('userLessons').submit(); return false;" style="width:100%">
                          <form id="userLessons" action="/userLess/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -77,7 +77,7 @@
                             </form>
                         </a>
                     </li><li>
-                         <a href="#">
+                         <a href="javascript:{}" onclick="document.getElementById('user_form').submit(); return false;">
                          <form id="user_form" action="/userProfile/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -142,7 +142,15 @@
 
 
             </div>
-<br/>       <a href="/res/addLesson" class="btn btn-w-m btn-primary" style="float:right">Add Lesson</a>
+<br/>      
+
+  <form action="/res/addLesson/" method="POST">
+                        <input type="hidden" name="email" value="{{email}}">
+                      <input type="submit" name="my-form" class="btn btn-w-m btn-primary" value="Add Lesson"> 
+            </form> 
+
+
+
 <br/>
     <!-- Mainly scripts -->
    

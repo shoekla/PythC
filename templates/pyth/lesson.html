@@ -43,7 +43,7 @@
                        
                     </li>
                       <li>
-                          <a href="#">
+                          <a href="javascript:{}" onclick="document.getElementById('resback').submit(); return false;">
                          <form id="resback" action="/backToRes/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -57,7 +57,7 @@
                         </a>
                     </li>
                     <li class ="active">
-                            <a href="#">
+                            <a href="javascript:{}" onclick="document.getElementById('setLessons').submit(); return false;">
                          <form id="setLessons" action="/setLess/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -71,7 +71,7 @@
                         </a>
                     </li>
                     <li>
-                             <a href="#">
+                             <a href="javascript:{}" onclick="document.getElementById('userLessons').submit(); return false;" style="width:100%">
                          <form id="userLessons" action="/userLess/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -84,7 +84,7 @@
                             </form>
                         </a>
                     </li><li>
-                         <a href="#">
+                         <a href="javascript:{}" onclick="document.getElementById('user_form').submit(); return false;">
                          <form id="user_form" action="/userProfile/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -146,7 +146,7 @@
                 <h4>{{lessonDetails[2]}}</h4><br/>
                 <hr>
                     <div class="col-sm-6">
-                    <form action="/res/lesson/grade/{{lessonName}}" method="POST">
+                    <form action="/res/lesson/grade/{{lessonName}}/" method="POST">
                         <h2>Enter Your Code:</h2>
                         <textarea name="code" style="width: 60vh; height:75vh;" placeholder="Enter your code here" id="my-textarea">{{Precode}}</textarea>
                      <br/>

@@ -36,7 +36,7 @@
                        
                     </li>
                       <li>
-                          <a href="#">
+                          <a href="javascript:{}" onclick="document.getElementById('resback').submit(); return false;">
                          <form id="resback" action="/backToRes/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li>
-                            <a href="#">
+                            <a href="javascript:{}" onclick="document.getElementById('setLessons').submit(); return false;">
                          <form id="setLessons" action="/setLess/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -64,7 +64,7 @@
                         </a>
                     </li>
                     <li>
-                             <a href="#">
+                             <a href="javascript:{}" onclick="document.getElementById('userLessons').submit(); return false;" style="width:100%">
                          <form id="userLessons" action="/userLess/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -78,7 +78,7 @@
                         </a>
                     </li>
                     <li class ="active">
-                         <a href="#">
+                         <a href="javascript:{}" onclick="document.getElementById('user_form').submit(); return false;">
                          <form id="user_form" action="/userProfile/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -132,9 +132,9 @@
                         <div class="">
                             <div>
                                 <h2 class="no-margins">
-                                    {{name}}
+                                 {{name}}
                                 </h2>
-                                <h4>{{nick}}</h4>
+                                <h4>-{{nick}}</h4>
                                 <small>
                                     {{summary}}
                                     <br/>
@@ -155,13 +155,15 @@
 
                    <div class="col-md-3">
                     
-        <form action="/editProf/" method="POST">
-                     
-
-         <input type="hidden" name="email" value="{{email}}">
-                       <center> <input type="submit" name="my-form" class="btn btn-w-m btn-primary" value="Edit Profile"> </center><br/><br/>
+        <form action="/edit/" method="POST">
+                   <input type="hidden" name="pic" value="{{pic}}">    
+                     <input type="hidden" name="name" value="{{name}}">
+                       <input type="hidden" name="nick" value="{{nick}}">
+                         <input type="hidden" name="summary" value="{{summary}}">
+                        <input type="hidden" name="email" value="{{email}}">
+                       <center> <input type="submit" name="my-form" class="btn btn-w-m btn-primary" value="Edit Profile"> </center><br/>
             </form>          
-              <form action="/DeleteProf/" method="POST">
+              <form action="/sure/" method="POST">
                      
 
          <input type="hidden" name="email" value="{{email}}">

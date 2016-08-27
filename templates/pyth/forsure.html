@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{{email}}PythC</title>
+    <title>{{email}}{{email}} PythC</title>
  <link rel="icon" href="{{ url_for('static', filename='pyth.png')}}">
     <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -21,7 +21,7 @@
 <script src="{{ url_for('static', filename='js/myscript.js')}}"></script>
 </head>
 
-<body style="overflow: hidden;">
+<body  style="overflow: hidden;">
     <div id="wrapper">
         <nav class="navbar-default navbar-static-side" role="navigation">
             <div class="sidebar-collapse">
@@ -77,7 +77,7 @@
                             </form>
                         </a>
                     </li>
-                    <li class="active">
+                    <li class ="active">
                          <a href="javascript:{}" onclick="document.getElementById('user_form').submit(); return false;">
                          <form id="user_form" action="/userProfile/" method="POST">
                             <!-- Your Form -->    
@@ -106,102 +106,28 @@
             </div>
         </nav>
 
-        <div id="page-wrapper" class="gray-bg dashbard-1" >
+        <div id="page-wrapper" class="gray-bg dashbard-1">
         <div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
            
-        </div> <center><h1>Your Profile</h1></center>
+        </div> <center><h1>Your Account</h1></center>
             
 
         </nav>
         </div>
-                <div class="row  border-bottom white-bg dashboard-header" style="height: 80vh;overflow : auto;">
-                <h2><u>User Name <span style="float:right">Total Points</span></u></h2>
-                
-                <br/><br/>
-                     <div class="row">
-                            <div class="col-lg-12">
-                                <div class="ibox float-e-margins">
-                                    <div class="ibox-title">
-                                        <h5>Completed Lessons</h5>
-                                        <div class="ibox-tools">
-                                            <a class="collapse-link">
-                                                <i class="fa fa-chevron-up"></i>
-                                            </a>
-                                            <a class="close-link">
-                                                <i class="fa fa-times"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="ibox-content">
+                <div class="row  border-bottom white-bg dashboard-header" style="height: 90vh;overflow : auto;">
 
-                                        <div class="row">
-                                            <div class="col-lg-12">
-                                                <table class="table table-hover margin bottom">
-                                                    <thead>
-                                                    <tr>
-                                                        <th style="width: 1%" class="text-center">No.</th>
-                                                        <th>Name</th>
-                                                    </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                    <tr>
-                                                        <td class="text-center">1</td>
-                                                        <td> Security doors
-                                                            </td>
+                   <center><h3>Are you Sure You want To Delete Your Account?</h3>
+                         <form action="/deleteAccount/" method="POST">
+                     
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">2</td>
-                                                        <td> Wardrobes
-                                                        </td>
+         <input type="hidden" name="email" value="{{email}}">
+                       <center> <input type="submit" name="my-form" class="btn btn-w-m btn-danger" value="Delete Account"> </center>
+            </form> 
+                   </center>
+      
 
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">3</td>
-                                                        <td> Set of tools
-                                                        </td>
-
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">4</td>
-                                                        <td> Panoramic pictures</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">5</td>
-                                                        <td>Phones</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td class="text-center">6</td>
-                                                        <td>Monitors</td>
-                                                    </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <div id="world-map" style="height: 300px;"></div>
-                                            </div>
-                                    </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-
-
-
-                <!--
-{% for name in names %}
-    <h2><a href="/load/{{name}}/">{{name}}:</a> </h2>
-        <h4>{{sumSL[names.index(name)]}}</h4>
-    <br/>
-    {% endfor %}
--->
-
-            </div>
-<br/>       <a href="/res/addLesson" class="btn btn-w-m btn-primary" style="float:right">Add Lesson</a>
-<br/>
     <!-- Mainly scripts -->
    
 

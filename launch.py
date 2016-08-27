@@ -107,61 +107,7 @@ def userCoPythnt(names = [], sumSL = []):
 	for item in names:
 		sumSL.append(firePyth.getSummary(item))
 	return render_template("pyth/userCont.html",names = names, sumSL=sumSL)
-@app.route('/res/addLesson')
-def addLOythess():
-	return redirect("/login/")
-	return render_template("pyth/add.html")
-@app.route('/res/addLesson/', methods=['POST'])
-def addLPythesonPost(name = None, lesson = None, project = None, summary = None, array = [], preCode = None, exCode = None,message =None,ex = None):
-	name = ""
-	name = request.form['name']
-	print "Name: "+name
-	lesson = ""
-	lesson = request.form['lesson']
-	print "lesson: "+lesson
-	project = ""
-	project = request.form['project']
-	summary = ""
-	summary = request.form['summary']
-	print "SUmmary: "+summary
-	preCode = """ """
-	preCode = request.form['preCode']
-	print "Precode: "+preCode
-	exCode = """ """
-	exCode = request.form['exCode']
-	print "Excode: "+exCode
-	ex = ""
-	ex = request.form['ex']
-	if ex == None or ex == "":
-		ex = ""
-	print "ex: "+ex
-	print "If"
-	if ex == "code":
-		exCode=compileA.com(exCode)
-		if len(str(exCode))==0:
-			try:     
-				exec code
-			except Exception as e: 
-				exCode = e
-	print "COnt"
-	if "exCode" in name or "preCode" in name:
-		message = ""
-		message = "'Excode or 'preCode' can not be in Lesson Name"
-		return render_template("pyth/add.html",message=message)
-	if (name == "" or lesson =="" or project =="" or summary =="" or exCode == ""):
-		message = ""
-		message = "Please fill all fields"
-		return render_template("pyth/add.html",message=message)
-	array = []
-	array = [summary,lesson,project]
-	if firePyth.putInFirebase(name,str(array)) == 1:
-		firePyth.putExCode(name,exCode)
-		firePyth.putPreCode(name,preCode)
-	else:
-		message = ""
-		message = "Lesson Name Already in system :( try different name!"
-		return render_template("pyth/add.html",message=message)
-	return render_template("pyth/succAdd.html",name=name)
+
 
 
 @app.route('/backToRes/',methods=['POST'])
@@ -193,15 +139,25 @@ def my_formPyth_postsdfsDDD(code=None,exCode=None,startTime=None,timeA=None,emai
 	exCode=""
 	code=""
 	code = request.form['code']
+	startTime=time.time()
 	exCode=compileA.com(code)
 	if len(str(exCode))==0:
 		try:     
 			exec code
 		except Exception as e: 
 			exCode = e
-	startTime=time.time()
+	
 	timeA = time.time() - startTime
 	return render_template('pyth/res.html',exCode=exCode,timeA=timeA,code=code,email=email)
+@app.route('/loginRes/',methods=['POST'])
+def loginCompile(code = None,exCode = None):
+	code = None
+	code = ""
+	code = request.form['code']
+	exCode = None
+	exCode = ""
+	exCode=compileA.com(code)
+	return render_template("pyth/login.html",mess="You're Coding Already!",exCode =exCode,code = code)
 @app.route('/lesson/<lessonName>/',methods=['POST'])
 def my_formRLessonPythdasESdd(lessonName, lessonDetails = [],helpV = [],lengthO = None,Precode = None,email = None):
 	email = None
@@ -227,7 +183,7 @@ def my_formRLessonPythdasESdd(lessonName, lessonDetails = [],helpV = [],lengthO 
 	lengthO = len(helpV)
 	return render_template('pyth/lesson.html',lessonName = lessonName,lessonDetails = lessonDetails,helpV=helpV,lengthO = lengthO,Precode = Precode,email=email)
 
-@app.route('/res/lesson/grade/<lessonName>', methods=['POST'])
+@app.route('/res/lesson/grade/<lessonName>/', methods=['POST'])
 def gradeCodeLesson(lessonName, lessonDetails = [],helpV = [],lengthO = None,Precode = None,code=None,exCode=None,section=None,gradeCode = None, message = None,email = None,award = None):
 	lessonDetails = []
 	lessonDetails = firePyth.getRespArr(lessonName)
@@ -309,6 +265,136 @@ def userProf(email = None,userData = [],points = None,pointMess = None,sumSL = [
 	print "6"
 	return render_template("pyth/userProf.html",email = email,pointMess = pointMess,name = name,nick = nick,summary = summary,pic = pic,lessons = lessons,sumSL=sumSL)
 
+
+@app.route('/soon/',methods=['POST'])
+def comicngsoonguys(email = None):
+	email = None
+	email = request.form['email']
+	return render_template("pyth/soon.html",email = email)
+@app.route('/edit/',methods = ['POST'])
+def edit(email = None,nick = None,summary = None,pic = None):
+	email = None
+	email = request.form['email']
+	name = None
+	name = ""
+	name = request.form['name']
+	nick = None 
+	nick = ""
+	nick = request.form['nick']
+	summary = None
+	summary = ""
+	summary = request.form['summary']
+	pic = None 
+	pic = request.form['pic']
+	return render_template("pyth/edit.html",name = name,nick = nick,summary = summary,pic = pic,email=email)
+@app.route('/submitEditLesson/',methods=['POST'])
+def subitedit(email = None,nick = None,summary = None,pic = None,points = None,pointMess = None,lessons = [],sumSL = [],userData = []):
+	email = None
+	email = request.form['email']
+	name = None
+	name = ""
+	name = request.form['name']
+	nick = None 
+	nick = ""
+	nick = request.form['nick']
+	summary = None
+	summary = ""
+	summary = request.form['summary']
+	pic = None 
+	pic = request.form['pic']
+	scrape.editUserData(name,nick,summary,pic,email)
+	userData = []
+	userData = scrape.getUserData(email)
+	lessons = []
+	lessons = userData[0]
+	print userData
+	points = None
+	points = 0
+	print "2"
+	points = len(lessons) * 10
+	pointMess = None
+	pointMess = ""
+	pointMess = str(points)
+	sumSL = []
+	print "4"
+	for item in userData[0]:
+		sumSL.append(firePyth.getSummary(item))
+	return render_template("pyth/userProf.html",email = email,pointMess = pointMess,name = name,nick = nick,summary = summary,pic = pic,lessons = lessons,sumSL=sumSL)
+@app.route('/sure/',methods = ['POST'])
+def forSure(email = None):
+	email = None
+	email = ""
+	email = request.form['email']
+	return render_template("pyth/forsure.html",email = email)
+@app.route('/deleteAccount/',methods=['POST'])
+def deleteAccount(email = None,mess = None):
+	email = None
+	email = ""
+	email = request.form['email']
+	mess = None
+	mess = ""
+	mess = scrape.deleteA(email)
+	return render_template("pyth/login.html",mess=mess)
+@app.route('/res/addLesson/',methods=["POST"])
+def addLOythess(email = None):
+	email = None
+	email = request.form['email']
+	return render_template("pyth/add.html",email =email)
+@app.route('/res/addLessonSubmit/', methods=['POST'])
+def addLPythesonPost(name = None, lesson = None, project = None, summary = None, array = [], preCode = None, exCode = None,message =None,ex = None,email = None):
+	name = ""
+	name = request.form['name']
+	print "Name: "+name
+	lesson = ""
+	lesson = request.form['lesson']
+	print "lesson: "+lesson
+	project = ""
+	project = request.form['project']
+	summary = ""
+	summary = request.form['summary']
+	print "Summary: "+summary
+	preCode = """ """
+	preCode = request.form['preCode']
+	print "Precode: "+preCode
+	exCode = """ """
+	exCode = request.form['exCode']
+	print "Excode: "+exCode
+	ex = ""
+	ex = request.form['ex']
+	if ex == None or ex == "":
+		ex = ""
+	print "ex: "+ex
+	print "If"
+	if ex == "code":
+		exCode=compileA.com(exCode)
+		if len(str(exCode))==0:
+			try:     
+				exec code
+			except Exception as e: 
+				exCode = e
+	print "COnt"
+	if "exCode" in name or "preCode" in name:
+		message = ""
+		message = "'Excode or 'preCode' can not be in Lesson Name"
+		return render_template("pyth/add.html",message=message,name = name,lesson = lesson,summary = summary,preCode =preCode,exCode =exCode,project=project)
+	if (name == "" or lesson =="" or project =="" or summary =="" or exCode == ""):
+		message = ""
+		message = "Please fill all fields"
+		return render_template("pyth/add.html",message=message,name = name,lesson = lesson,summary = summary,preCode =preCode,exCode =exCode,project = project)
+	array = []
+	array = [summary,lesson,project]
+	if firePyth.putInFirebase(name,str(array)) == 1:
+		firePyth.putExCode(name,exCode)
+		firePyth.putPreCode(name,preCode)
+	else:
+		message = ""
+		message = "Lesson Name Already in system :( try different name!"
+		return render_template("pyth/add.html",message=message,name = name,lesson = lesson,summary = summary,preCode =preCode,exCode =exCode,project = project)
+	email = None
+	email = ""
+	email = request.form['email']
+	scrape.completeLess(name,email)
+	return render_template("pyth/succAdd.html",name=name,email = email)
 
 
 if __name__ == '__main__':

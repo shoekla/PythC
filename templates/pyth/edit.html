@@ -36,7 +36,7 @@
                        
                     </li>
                       <li>
-                          <a href="#">
+                          <a href="javascript:{}" onclick="document.getElementById('resback').submit(); return false;">
                          <form id="resback" action="/backToRes/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -50,7 +50,7 @@
                         </a>
                     </li>
                     <li>
-                            <a href="#">
+                            <a href="javascript:{}" onclick="document.getElementById('setLessons').submit(); return false;">
                          <form id="setLessons" action="/setLess/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -63,8 +63,8 @@
                             </form>
                         </a>
                     </li>
-                    <li class ="active">
-                             <a href="#">
+                    <li>
+                             <a href="javascript:{}" onclick="document.getElementById('userLessons').submit(); return false;" style="width:100%">
                          <form id="userLessons" action="/userLess/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -76,8 +76,8 @@
         </span>
                             </form>
                         </a>
-                    </li><li>
-                         <a href="#">
+                    </li><li class ="active">
+                         <a href="javascript:{}" onclick="document.getElementById('user_form').submit(); return false;">
                          <form id="user_form" action="/userProfile/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -118,28 +118,16 @@
                 <div class="row  border-bottom white-bg dashboard-header" style="height: 90vh;overflow : auto;">
                 <p style ="color:red">{{message}}</p>
             <form action="/submitEditLesson/" method="POST">
-            <input type="text" name="name" placeholder="Enter Name of Lesson" class="form-control" style = "width:50vh"/><br/>
-            <textarea class="form-control" name="summary" style="width: 100vh; height:15vh;" placeholder="Enter lesson summary" id="my-textarea"></textarea><br/>
-                <textarea class="form-control" name="lesson"style="width: 100vh; height:35vh;" placeholder="Enter actual Lesson" id="my-textarea"></textarea><br/>
-                    <textarea class="form-control" name ="project"style="width: 100vh; height:15vh;" placeholder="Enter Project" id="my-textarea"></textarea><br/>
-              
-
-
-
-<br/>
-                 <div class="col-sm-6">
-                        <h2>Enter Pre-set Code:</h2>
-                        <textarea name="preCode"style="width: 60vh; height:60vh;" placeholder="Enter your code here" id="my-textarea"></textarea>
-                        <br/>
-                    </div>
-                    <h2> Enter Expected Output</h2>
-                    <div class="col-sm-6">
-                    <input type="radio" name="ex" value="code">Take output of this Code<br>
-                     <input type="radio" name="ex" value="input" checked>Take string that was inputed<br>
-                        <textarea name="exCode" style="width: 60vh; height:60vh;" placeholder="The exectution will display here."></textarea>
-                    </div>
-<br/>
-                     <input type="submit" style = "float:right"name="my-form" class="btn btn-w-m btn-primary" value="Submit">
+    <input type="text" name="name" placeholder="Enter Your Name" class="form-control" style = "width:50vh" value="{{name}}" autocomplete="off"/><br/>
+     <input type="text" name="nick" placeholder="What is a Nick name you go by..." class="form-control" style = "width:50vh" value="{{nick}}" autocomplete="off"/><br/>
+           <input type="text" name="pic" placeholder="Url for Profile Picture" class="form-control" style = "width:50vh" value="{{pic}}" autocomplete="off"/><br/>
+           
+ <textarea class="form-control" name="summary" style="width: 100vh;height:35vh;" placeholder="Tell us about Yourself" id="my-textarea" autocomplete="off" >{{summary}}</textarea>
+ <br/>
+                 
+         <input type="hidden" name="email" value="{{email}}">
+              <br/>
+                     <input type="submit" name="my-form" class="btn btn-w-m btn-primary" value="Submit">
                          
             </form>
             </div>

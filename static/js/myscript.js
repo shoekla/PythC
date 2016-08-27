@@ -24,8 +24,9 @@ function enableTab(id) {
 // Enable the tab character onkeypress (onkeydown) inside textarea...
 // ... for a textarea that has an `id="my-textarea"`
 enableTab('my-textarea');
-
-
+enableTab('my-textarea2')
+enableTab('my-textarea3')
+enableTab('my-textarea4')
 
 $(document).delegate('#textbox', 'keydown', function(e) {
   var keyCode = e.keyCode || e.which;

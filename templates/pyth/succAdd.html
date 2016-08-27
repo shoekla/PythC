@@ -43,7 +43,7 @@
                        
                     </li>
                       <li>
-                          <a href="#">
+                          <a href="javascript:{}" onclick="document.getElementById('resback').submit(); return false;">
                          <form id="resback" action="/backToRes/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -57,7 +57,7 @@
                         </a>
                     </li>
                     <li>
-                            <a href="#">
+                            <a href="javascript:{}" onclick="document.getElementById('setLessons').submit(); return false;">
                          <form id="setLessons" action="/setLess/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -71,7 +71,7 @@
                         </a>
                     </li>
                     <li class ="active">
-                             <a href="#">
+                             <a href="javascript:{}" onclick="document.getElementById('userLessons').submit(); return false;" style="width:100%">
                          <form id="userLessons" action="/userLess/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -84,7 +84,7 @@
                             </form>
                         </a>
                     </li><li>
-                         <a href="#">
+                         <a href="javascript:{}" onclick="document.getElementById('user_form').submit(); return false;">
                          <form id="user_form" action="/userProfile/" method="POST">
                             <!-- Your Form -->    
         <i class="fa fa-diamond"></i> 
@@ -123,8 +123,14 @@
         </nav>
         </div>
                 <div class="row  border-bottom white-bg dashboard-header">
-<center><h1>Congrats, you added {{name}}!</h1>
-<a href="/res/userCont/" class="btn btn-w-m btn-primary"> Back to Lessons</a></center>
+<center><h1>Congrats, you added {{name}}! You Were Awarded 10 points!</h1>
+
+        <form action="/userLess/" method="POST">
+                     
+
+         <input type="hidden" name="email" value="{{email}}">
+                       <center> <input type="submit" name="my-form" class="btn btn-w-m btn-primary" value="Back To Lessons"></center>
+</form>
             </div>
       
 

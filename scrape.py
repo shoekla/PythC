@@ -113,6 +113,39 @@ def getUserData(email):
 
 	except:
 		return [[],[]]
+def editUserData(name,nick,summary,pic,email):
+	try:
+		users = eval(getResp("Users"))
+		userData = eval(getResp("UserData"))
+		for i in range(0,len(users)):
+			if users[i] == email:
+				print userData
+				print "Change"	
+				userData[i][1]=[str(name),str(nick),str(summary),str(pic)]
+				print userData
+				firebase.delete("UserData",None)
+				firebase.post("UserData",str(userData))
+				return
 
+	except:
+		return
+def deleteA(email):
+	try:
+		users = eval(getResp("Users"))
+		userData = eval(getResp("UserData"))
+		b = eval(getResp("passwords"))
+		for i in range(0,len(users)):
+			if users[i] == email:
+				del users[i]
+				del userData[i]
+				del b[i]
+				firebase.delete("UserData",None)
+				firebase.delete('Users',None)
+				firebase.post("Users",str(users))
+				firebase.post("UserData",str(userData))
+				firebase.delete('passwords',None)
+				firebase.post("passwords",str(b))
+				return "Account Deleted"
 
-
+	except:
+		return "Error Occured"
