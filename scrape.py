@@ -30,11 +30,14 @@ def deleteDuplicates(lis):
 	return newLis
 
 def sendEmailForPass(password,email):
-	url = "abirshukla.pythonanywhere.com/pythEmail/PythC Password/"+str(password)+"/"+str(email)+"/"
+	url = "http://abirshukla.pythonanywhere.com/pythEmail/PythC%20Password/"+str(password)+"/"+str(email)+"/"
 	print url
 	source_code=requests.get(url)
+	print "1"
 	plain_text=source_code.text
+	print "2"
 	soup=BeautifulSoup(plain_text)
+	print "Done"
 	return ""
 	
 def getResp(phrase):

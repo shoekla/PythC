@@ -37,6 +37,7 @@ def emailPassUser(email=None,passW=None):
 	email = request.form['email']
 	email = email.strip()
 	passW = scrape.getPass(email)
+	print "If Statement"
 	if passW == "":
 		return render_template("pyth/emailPass.html",mess="Email not found :(")
 	else:
