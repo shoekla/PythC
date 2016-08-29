@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{{email}}PythC</title>
+    <title>PythC</title>
  <link rel="icon" href="{{ url_for('static', filename='pyth.png')}}">
     <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -124,6 +124,11 @@
            
  <textarea class="form-control" name="summary" style="width: 100vh;height:35vh;" placeholder="Tell us about Yourself" id="my-textarea" autocomplete="off" >{{summary}}</textarea>
  <br/>
+                                      
+                          <div class="i-checks"><label> <input type="radio" checked="" value="option1" name="a"> <i></i> Show Contact Info </label></div>
+                <div class="i-checks"><label> <input type="radio"  value="option2" name="a"> <i></i> Do Not Show Contact Info </label></div>
+                                        
+
                  
          <input type="hidden" name="email" value="{{email}}">
               <br/>
