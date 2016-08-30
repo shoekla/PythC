@@ -185,7 +185,7 @@ def my_formRLessonPythdasESdd(lessonName, lessonDetails = [],helpV = [],lengthO 
 	return render_template('pyth/lesson.html',lessonName = lessonName,lessonDetails = lessonDetails,helpV=helpV,lengthO = lengthO,Precode = Precode,email=email)
 
 @app.route('/res/lesson/grade/<lessonName>/', methods=['POST'])
-def gradeCodeLesson(lessonName, lessonDetails = [],helpV = [],lengthO = None,Precode = None,code=None,exCode=None,section=None,gradeCode = None, message = None,email = None,award = None):
+def gradeCodeLesson(lessonName, lessonDetails = [],helpV = [],lengthO = None,Precode = None,code=None,exCode=None,section=None,gradeCode = None, message = None,email = None,award = None,nextLesson = None):
 	lessonDetails = []
 	lessonDetails = firePyth.getRespArr(lessonName)
 	helpV = []
@@ -220,13 +220,17 @@ age = 18"""
 		print "Inside"
 		award = None
 		award = scrape.completeLess(lessonName,email)
+		nextLesson = None
+		nextLesson = ""
+		print "What"
+		nextLesson = scrape.getNextLesson(lessonName)
 		print "Returning"
-		return render_template("pyth/succ.html",less=lessonName,email = email,award = award)
+		return render_template("pyth/succ.html",less=lessonName,email = email,award = award,nextLesson = nextLesson)
 	message = ""
 	message = "Your code is not quite right"
 	return render_template('pyth/lessonRes.html',lessonName = lessonName,lessonDetails = lessonDetails,helpV=helpV,lengthO = lengthO,exCode=exCode,code=code,section=section, message = message,email = email)
 @app.route("/userProfile/",methods=['POST'])
-def userProf(email = None,userData = [],points = None,pointMess = None,sumSL = [],name = None,nick = None,summary = None,pic = None,lessons = []):
+def userProf(email = None,userData = [],points = None,pointMess = None,sumSL = [],name = None,nick = None,summary = None,pic = None,lessons = [],show = None):
 	email = None 
 	email = request.form['email']
 	userData = []
@@ -263,8 +267,10 @@ def userProf(email = None,userData = [],points = None,pointMess = None,sumSL = [
 	print pic
 	lessons=userData[0]
 	print lessons
+	show = None
+	show = userData[1][4]
 	print "6"
-	return render_template("pyth/userProf.html",email = email,pointMess = pointMess,name = name,nick = nick,summary = summary,pic = pic,lessons = lessons,sumSL=sumSL)
+	return render_template("pyth/userProf.html",email = email,pointMess = pointMess,name = name,nick = nick,summary = summary,pic = pic,lessons = lessons,sumSL=sumSL,show = show)
 
 
 @app.route('/soon/',methods=['POST'])
@@ -273,7 +279,7 @@ def comicngsoonguys(email = None):
 	email = request.form['email']
 	return render_template("pyth/soon.html",email = email)
 @app.route('/edit/',methods = ['POST'])
-def edit(email = None,nick = None,summary = None,pic = None):
+def edit(email = None,nick = None,summary = None,pic = None,contact = None):
 	email = None
 	email = request.form['email']
 	name = None
@@ -287,9 +293,11 @@ def edit(email = None,nick = None,summary = None,pic = None):
 	summary = request.form['summary']
 	pic = None 
 	pic = request.form['pic']
-	return render_template("pyth/edit.html",name = name,nick = nick,summary = summary,pic = pic,email=email)
-@app.route('/submitEditLesson/',methods=['POST'])
-def subitedit(email = None,nick = None,summary = None,pic = None,points = None,pointMess = None,lessons = [],sumSL = [],userData = []):
+	contact = None
+	contact = request.form['contact']
+	return render_template("pyth/edit.html",name = name,nick = nick,summary = summary,pic = pic,email=email,contact = contact)
+@app.route('/submitEditAccount/',methods=['POST'])
+def subitedit(email = None,nick = None,summary = None,pic = None,points = None,pointMess = None,lessons = [],sumSL = [],userData = [],contact = None):
 	email = None
 	email = request.form['email']
 	name = None
@@ -303,7 +311,9 @@ def subitedit(email = None,nick = None,summary = None,pic = None,points = None,p
 	summary = request.form['summary']
 	pic = None 
 	pic = request.form['pic']
-	scrape.editUserData(name,nick,summary,pic,email)
+	contact = None
+	contact = request.form['contact']
+	scrape.editUserData(name,nick,summary,pic,email,contact)
 	userData = []
 	userData = scrape.getUserData(email)
 	lessons = []
@@ -320,7 +330,7 @@ def subitedit(email = None,nick = None,summary = None,pic = None,points = None,p
 	print "4"
 	for item in userData[0]:
 		sumSL.append(firePyth.getSummary(item))
-	return render_template("pyth/userProf.html",email = email,pointMess = pointMess,name = name,nick = nick,summary = summary,pic = pic,lessons = lessons,sumSL=sumSL)
+	return render_template("pyth/userProf.html",email = email,pointMess = pointMess,name = name,nick = nick,summary = summary,pic = pic,lessons = lessons,sumSL=sumSL,show =contact)
 @app.route('/sure/',methods = ['POST'])
 def forSure(email = None):
 	email = None
@@ -376,7 +386,7 @@ def addLPythesonPost(name = None, lesson = None, project = None, summary = None,
 	print "COnt"
 	if "exCode" in name or "preCode" in name:
 		message = ""
-		message = "'Excode or 'preCode' can not be in Lesson Name"
+		message = "'Excode' or 'preCode' can not be in Lesson Name"
 		return render_template("pyth/add.html",message=message,name = name,lesson = lesson,summary = summary,preCode =preCode,exCode =exCode,project=project)
 	if (name == "" or lesson =="" or project =="" or summary =="" or exCode == ""):
 		message = ""

@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>{{email}} PythC</title>
+    <title>PythC User Profile</title>
  <link rel="icon" href="{{ url_for('static', filename='pyth.png')}}">
     <link href="{{ url_for('static', filename='css/bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{ url_for('static', filename='font-awesome/css/font-awesome.css')}}" rel="stylesheet">
@@ -138,7 +138,10 @@
                                 <small>
                                     {{summary}}
                                     <br/>
+                                    {% if show == "show" %}
                                     Contact: <a href="mailto:{{email}}">{{email}}</a>
+                                    {% endif %}
+                                    
                                 </small>
 
                             </div>
@@ -161,6 +164,7 @@
                        <input type="hidden" name="nick" value="{{nick}}">
                          <input type="hidden" name="summary" value="{{summary}}">
                         <input type="hidden" name="email" value="{{email}}">
+                        <input type="hidden" name="contact" value="{{show}}">
                        <center> <input type="submit" name="my-form" class="btn btn-w-m btn-primary" value="Edit Profile"> </center><br/>
             </form>          
               <form action="/sure/" method="POST">

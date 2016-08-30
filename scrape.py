@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup
 from BeautifulSoup import BeautifulSoup, SoupStrainer
 import urllib2
 import os
-
+import firePyth
 from firebase import firebase
 
 firebase = firebase.FirebaseApplication('https://pythc.firebaseio.com/', None)
@@ -61,7 +61,7 @@ def addUser(email,passW):
 	b.append(passW)
 	firebase.delete('passwords',None)
 	userData = eval(getResp("UserData"))
-	userData.append([[],[str(email),"Nick Name",'This is my summary, I love to code!',"http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png"]])
+	userData.append([[],[str(email),"Nick Name",'This is my summary, I love to code!',"http://www.priorlakeassociation.org/wp-content/uploads/2011/06/blank-profile.png","show"]])
 	firebase.delete("UserData",None)
 	firebase.post("UserData",str(userData))
 	firebase.post("passwords",str(b))
@@ -116,7 +116,7 @@ def getUserData(email):
 
 	except:
 		return [[],[]]
-def editUserData(name,nick,summary,pic,email):
+def editUserData(name,nick,summary,pic,email,contact):
 	try:
 		users = eval(getResp("Users"))
 		userData = eval(getResp("UserData"))
@@ -124,7 +124,7 @@ def editUserData(name,nick,summary,pic,email):
 			if users[i] == email:
 				print userData
 				print "Change"	
-				userData[i][1]=[str(name),str(nick),str(summary),str(pic)]
+				userData[i][1]=[str(name),str(nick),str(summary),str(pic),str(contact)]
 				print userData
 				firebase.delete("UserData",None)
 				firebase.post("UserData",str(userData))
@@ -152,3 +152,28 @@ def deleteA(email):
 
 	except:
 		return "Error Occured"
+def getNextLesson(lesson):
+	names = firePyth.getUserCont()
+	print "One if"
+	if lesson in names:
+		for i in range(0,len(names)):
+			if names[i] == lesson:
+				if i < len(names)-1:
+					return names[i+1]
+				else:
+					return "No Lesson"
+	print "2 if"
+	names = ["Lesson 1 Syntax and Printing","Lesson 2 Variables in Python","Lesson 3 Conditionals","Lesson 4 Control Flow","Lesson 5 Methods","Lesson 6 Data Structures","Final Project"] + names
+	if lesson in names:
+		for i in range(0,len(names)):
+			if names[i] == lesson:
+				if i < len(names)-1:
+					return names[i+1]
+				else:
+					return "No Lesson"
+	return "No Lesson"
+
+
+
+
+

@@ -124,15 +124,27 @@
         </div>
                 <div class="row  border-bottom white-bg dashboard-header">
 <center><h1>Congrats, you passed {{less}}! {{award}}</h1></center>
+ <div class="tooltip-demo">
 
-
+    
 
         <form action="/setLess/" method="POST">
                      
 
          <input type="hidden" name="email" value="{{email}}">
-                       <center> <input type="submit" name="my-form" class="btn btn-w-m btn-primary" value="Back To Lessons"></center>
+                      <center> <input type="submit" name="my-form" class="btn btn-w-m btn-primary" value="Back To Lessons" style="top:50px"></center>
 </form>
+
+{% if nextLesson != "No Lesson" %}
+        <form action="/lesson/{{nextLesson}}/" method="POST" >
+                     
+
+         <input type="hidden" name="email" value="{{email}}">
+                       <input type="submit" name="my-form" class="btn btn-w-m btn-success" value="{{nextLesson}}" style="float:right">
+</form>
+{% endif %}
+</div>
+
             </div>
       
 
