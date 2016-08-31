@@ -407,7 +407,53 @@ def addLPythesonPost(name = None, lesson = None, project = None, summary = None,
 	scrape.completeLess(name,email)
 	return render_template("pyth/succAdd.html",name=name,email = email)
 
-
+@app.route("/<something>/")
+def loginSome(something):
+	return redirect("/login/")
+@app.route("/<something>")
+def loginSomsdfse(something):
+	return redirect("/login/")
+@app.route("/helpLinks/",methods=['POST'])
+def helplinks(links = [],email =None):
+	links = []
+	links = scrape.getHelpLink()
+	email = None
+	email = request.form['email']
+	return render_template("pyth/links.html",links = links,email=email)
+@app.route('/addLink/',methods=['POST'])
+def addLinkToHelpLink(link = None,links = [],email = None):
+	link = None
+	link = ""
+	link = request.form['link']
+	email = None
+	email = ""
+	email = request.form['email']
+	print "link: "+link
+	scrape.addLinkHelp(link)
+	links = []
+	links = scrape.getHelpLink()
+	return render_template("pyth/links.html",links = links,email = email)
+@app.route("/helpVideos/",methods=["POST"])
+def helpviVids(email = None,links = []):
+	email = None
+	email = ""
+	email = request.form['email']
+	links = []
+	links = scrape.getVidLink()
+	return render_template("pyth/vids.html",email = email,links = links)
+@app.route('/addVid/',methods=['POST'])
+def addLinkTVidoHelpLink(link = None,links = [],email = None):
+	link = None
+	link = ""
+	link = request.form['link']
+	email = None
+	email = ""
+	email = request.form['email']
+	print "link: "+link
+	scrape.addVidHelp(link)
+	links = []
+	links = scrape.getVidLink()
+	return render_template("pyth/vids.html",links = links,email =email)
 if __name__ == '__main__':
     app.run()
 

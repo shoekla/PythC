@@ -114,6 +114,39 @@
                         </a>
                     </li>
 
+                  <li>
+                         <a href="javascript:{}" onclick="document.getElementById('helpLinks').submit(); return false;">
+                         <form id="helpLinks" action="/helpLinks/" method="POST">
+                            <!-- Your Form -->    
+        <i class="fa fa-diamond"></i> 
+        <span class="nav-label">
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('helpLinks').submit(); return false;">
+        Helpful Links
+</span>
+        </span>
+                            </form>
+                        </a>
+                    </li>
+
+
+
+                    <li>
+                         <a href="javascript:{}" onclick="document.getElementById('helpvids').submit(); return false;">
+                         <form id="helpvids" action="/helpVideos/" method="POST">
+                            <!-- Your Form -->    
+        <i class="fa fa-diamond"></i> 
+        <span class="nav-label">
+         <input type="hidden" name="email" value="{{email}}">
+        <span href="javascript:{}" onclick="document.getElementById('helpvids').submit(); return false;">
+        Helpful Videos
+</span>
+        </span>
+                            </form>
+                        </a>
+                    </li>
+
+
                   </span></a></center></div></li></ul>
 
             </div>

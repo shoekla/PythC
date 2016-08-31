@@ -4,7 +4,6 @@
 
 <head>
 
-<meta http-equiv="refresh" content="0; url=/lesson/{{lessonName}}/" />
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -50,7 +49,7 @@
                             </form>
                         </a>
                     </li>
-                    <li class ="active">
+                    <li>
                             <a href="javascript:{}" onclick="document.getElementById('setLessons').submit(); return false;">
                          <form id="setLessons" action="/setLess/" method="POST">
                             <!-- Your Form -->    
@@ -101,7 +100,7 @@
                         </a>
                     </li>
 
-                  <li>
+<li>
                          <a href="javascript:{}" onclick="document.getElementById('helpLinks').submit(); return false;">
                          <form id="helpLinks" action="/helpLinks/" method="POST">
                             <!-- Your Form -->    
@@ -118,7 +117,7 @@
 
 
 
-                    <li>
+                    <li class="active">
                          <a href="javascript:{}" onclick="document.getElementById('helpvids').submit(); return false;">
                          <form id="helpvids" action="/helpVideos/" method="POST">
                             <!-- Your Form -->    
@@ -134,27 +133,45 @@
                     </li>
 
 
+
+
                   </span></a></center></div></li></ul>
 
             </div>
         </nav>
 
-        <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div id="page-wrapper" class="gray-bg dashbard-1" >
         <div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
            
-        </div> <center><h1>Loading {{lessonName}}</h1></center>
+        </div> <center><h1>Helpful Videos</h1></center>
             
 
         </nav>
         </div>
-               <center> <div class="row  border-bottom white-bg dashboard-header">
-<img src="{{ url_for('static', filename='load.gif')}}">
-</center>
-            </div>
-      
+                <div class="row  border-bottom white-bg dashboard-header" style="height: 80vh;overflow : auto;">
 
+{% for link in links %}
+
+<iframe width="330" height="275" src="{{link}}" frameborder="0" allowfullscreen autostart="0"></iframe>
+
+{% endfor %}
+
+ </div>
+<br/>      
+<form  role="form" action="/addVid/" method="POST">
+
+         <input type="hidden" name="email" value="{{email}}">
+  <div class="input-group">
+<input type="text" name="link" class="form-control" placeholder="Enter Embed Code for Helpful Video..." autocomplete="off"> <span class="input-group-btn"> 
+  <button type="submit" class="btn btn-primary">Add Video!
+                                        </button> </span></div>
+                                        </form>
+
+
+
+<br/>
     <!-- Mainly scripts -->
    
 

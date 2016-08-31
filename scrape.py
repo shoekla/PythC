@@ -172,8 +172,28 @@ def getNextLesson(lesson):
 				else:
 					return "No Lesson"
 	return "No Lesson"
+def getHelpLink():
+	links = eval(getResp("helpLinks"))
+	return links
 
+def addLinkHelp(link):
+	links = eval(getResp("helpLinks"))
+	if link in links:
+		return "Already in List"
+	links.append(link)
+	firebase.delete('helpLinks',None)
+	firebase.post("helpLinks",str(links))
+	return "Added"
+def getVidLink():
+	links = eval(getResp("helpVids"))
+	return links
 
-
-
+def addVidHelp(link):
+	links = eval(getResp("helpVids"))
+	if link in links:
+		return "Already in List"
+	links.append(link)
+	firebase.delete('helpVids',None)
+	firebase.post("helpVids",str(links))
+	return "Added"
 
