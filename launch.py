@@ -446,6 +446,7 @@ def addLinkTVidoHelpLink(link = None,links = [],email = None):
 	link = None
 	link = ""
 	link = request.form['link']
+	link = scrape.getEmbedCode(link)
 	email = None
 	email = ""
 	email = request.form['email']

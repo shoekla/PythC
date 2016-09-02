@@ -196,4 +196,15 @@ def addVidHelp(link):
 	firebase.delete('helpVids',None)
 	firebase.post("helpVids",str(links))
 	return "Added"
+def getEmbedCode(link):
+	if link.startswith("http"):
+		return link
+	else:
+		index = link.find("src=")
+		beg = link.find('"',index)
+		end = link.find('"',beg+1)
+		return link[beg+1:end]
+
+
+
 
