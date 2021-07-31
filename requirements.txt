@@ -6,7 +6,7 @@ blinker==1.4
 bs4==0.0.1
 cssselect==0.9.1
 cssutils==1.0
-Django==1.8.2
+Django==2.2.24
 dominate==2.1.12
 enum34==1.0.4
 Flask==0.10.1
