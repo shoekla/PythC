@@ -35,7 +35,7 @@ macholib==1.7
 mailtools==2
 MarkupSafe==0.23
 modulegraph==0.12.1
-nltk==3.0.3
+nltk==3.6.3
 numpy==1.9.2
 passlib==1.6.4
 pbr==1.9.1
