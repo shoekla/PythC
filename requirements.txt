@@ -25,7 +25,7 @@ html5lib==0.999999
 idna==2.0
 img2pdf==0.2
 ipaddress==1.0.7
-ipython==3.2.1
+ipython==7.16.3
 itsdangerous==0.24
 Jinja2==2.8
 LEPL==5.1.3
