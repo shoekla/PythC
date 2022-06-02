@@ -21,7 +21,7 @@ Flask-User==0.6.3
 Flask-WTF==0.12
 gnureadline==6.3.3
 gunicorn==19.6.0
-html5lib==0.999999
+html5lib==0.99999999
 idna==2.0
 img2pdf==0.2
 ipaddress==1.0.7
